@@ -17,20 +17,16 @@ public class MainServlet extends HttpServlet {
     private static Statement stmt;
     //private static ResultSet rs;
 
-    public class Connection {
-        private Connection con;
-
-        private Connection() {
+    public class MySingleton {
+        private static MySingleton instance;
+        private MySingleton() {
         }
-
-        public Connection getnInstance() throws SQLException {
-            if (null == con) {
-                con = new Connection();
+        public static MySingleton getInstance() {
+            if( instance == null ) {
+                instance = new MySingleton();
             }
-
-            return con;
+            return instance;
         }
-
     }
 
     //private static Connection con = Connection.getInstance();
