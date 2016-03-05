@@ -33,7 +33,7 @@ public class MainServlet extends HttpServlet {
 
     }
 
-    private static Connection con = Connection.getInstance();
+    //private static Connection con = Connection.getInstance();
 
 
 
