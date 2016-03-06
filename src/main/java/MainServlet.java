@@ -5,32 +5,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.*;
 
 
 public class MainServlet extends HttpServlet {
 
-    private static final String url = "jdbc:mysql://localhost:3306/video";
-    private static final String user = "root";
-    private static final String password = "admin";
 
-    private static Connection con;
-    private static Statement stmt;
+    //private static Connection con;
+    private static PreparedStatement stmt;
     //private static ResultSet rs;
-
-    public class MySingleton {
-        private static MySingleton instance;
-        private MySingleton() {
-        }
-        public static MySingleton getInstance() {
-            if( instance == null ) {
-                instance = new MySingleton();
-            }
-            return instance;
-        }
-    }
-
-    //private static Connection con = Connection.getInstance();
-
 
 
     //@Override
@@ -54,30 +37,21 @@ public class MainServlet extends HttpServlet {
         out.print("<html>"+book+"<br>"+author+"</html>");
 
 
-        String query = "insert into video.catvideo (id, name, file)"+"values (3, '"+book+"', '"+author+"');";
-        out.print(query);
-
-
-        Connection con = Connection.getInstance();
+       // String query = "insert into video.catvideo (id, name, file)"+"values (3, ?, ?);";
+       // out.print("  "+query);
 
 
         try
         {
-            // opening database connection to MySQL server
-            String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-            Class.forName(JDBC_DRIVER);
-
-            //Connection c = Connection.getInstance();
-            con = DriverManager.getConnection(url, user, password);
 
             // getting Statement object to execute query
-            stmt = con.createStatement();
+            stmt = Connection.getInstance().prepareStatement("insert into video.catvideo (id, name, file)"+"values (3, ?, ?);");
+
+            stmt.setString(1, book);
+            stmt.setString(2, author);
 
             // executing SELECT query
-            stmt.executeUpdate(query);
-
-            //PrintWriter out = resp.getWriter();
-            //out.print("<h1>Hello TRY!!!</h1>");
+            stmt.executeUpdate();
 
 
         }
@@ -87,19 +61,12 @@ public class MainServlet extends HttpServlet {
         }
 
 
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {//тут какой-то бок
+        finally {//тут какой-то бок
         //close connection ,stmt and resultset here
-        try { con.close(); } catch(SQLException se) { System.out.println("Fuck!"); }
+
         try { stmt.close(); } catch(SQLException se) {  System.out.println("Fuck!"); }
         //try { rs.close(); } catch(SQLException se) {  }
     }
-        //PrintWriter out = resp.getWriter();
-        //out.print(book);*/
-
-
-
 
 }
 }
