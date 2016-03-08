@@ -3,13 +3,13 @@
  */
 import java.sql.*;
 
-public class Connection {
+public class DBUtil {
     private static final String url = "jdbc:mysql://localhost:3306/video";
     private static final String user = "root";
     private static final String password = "admin";
 
     private static java.sql.Connection con;
-    private Connection() {
+    private DBUtil() {
 
     }
     public static java.sql.Connection getInstance() {
@@ -19,7 +19,7 @@ public class Connection {
                 String JDBC_DRIVER = "com.mysql.jdbc.Driver";
                 Class.forName(JDBC_DRIVER);
                 con= DriverManager.getConnection(url, user, password);
-                //instance = (java.sql.Connection) new Connection();
+
             }
             catch (SQLException sqlEx)
             {
