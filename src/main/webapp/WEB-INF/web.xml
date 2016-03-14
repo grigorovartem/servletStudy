@@ -14,4 +14,10 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <listener>
+        <listener-class>
+            com.grigorovartem.servletstudy.MyServletContextListener
+        </listener-class>
+    </listener>
+
 </web-app>
