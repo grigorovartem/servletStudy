@@ -16,7 +16,7 @@
 
     <listener>
         <listener-class>
-            com.grigorovartem.servletstudy.MyServletContextListener
+            com.grigorovartem.servletstudy.StartUpListener
         </listener-class>
     </listener>
 
