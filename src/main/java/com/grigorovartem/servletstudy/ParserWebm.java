@@ -36,6 +36,7 @@ public class ParserWebm implements Runnable
          {
             writer.write(line);
          }
+         writer.flush();
       }
    }
 
