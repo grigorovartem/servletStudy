@@ -3,15 +3,15 @@ package com.grigorovartem.servletstudy;
 public class Webm
 {
    private String duration;
-   private int height;
-   private int width;
+   private Long height;
+   private Long width;
    private String name;
-   private int nsfw;
-   private int size;
+   private Long nsfw;
+   private Long size;
    private String path;
    private String thumbnail;
-   private int tn_height;
-   private int tn_width;
+   private Long tn_height;
+   private Long tn_width;
 
    public String getDuration()
    {
@@ -23,22 +23,22 @@ public class Webm
       this.duration = duration;
    }
 
-   public int getHeight()
+   public Long getHeight()
    {
       return height;
    }
 
-   public void setHeight(int height)
+   public void setHeight(Long height)
    {
       this.height = height;
    }
 
-   public int getWidth()
+   public Long getWidth()
    {
       return width;
    }
 
-   public void setWidth(int width)
+   public void setWidth(Long width)
    {
       this.width = width;
    }
@@ -53,22 +53,22 @@ public class Webm
       this.name = name;
    }
 
-   public int getNsfw()
+   public Long getNsfw()
    {
       return nsfw;
    }
 
-   public void setNsfw(int nsfw)
+   public void setNsfw(Long nsfw)
    {
       this.nsfw = nsfw;
    }
 
-   public int getSize()
+   public Long getSize()
    {
       return size;
    }
 
-   public void setSize(int size)
+   public void setSize(Long size)
    {
       this.size = size;
    }
@@ -93,22 +93,22 @@ public class Webm
       this.thumbnail = thumbnail;
    }
 
-   public int getTn_height()
+   public Long getTn_height()
    {
       return tn_height;
    }
 
-   public void setTn_height(int tn_height)
+   public void setTn_height(Long tn_height)
    {
       this.tn_height = tn_height;
    }
 
-   public int getTn_width()
+   public Long getTn_width()
    {
       return tn_width;
    }
 
-   public void setTn_width(int tn_width)
+   public void setTn_width(Long tn_width)
    {
       this.tn_width = tn_width;
    }

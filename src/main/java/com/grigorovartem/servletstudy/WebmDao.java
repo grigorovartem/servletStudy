@@ -13,15 +13,15 @@ public class WebmDao
       try (PreparedStatement stmt = DBUtil.getInstance().prepareStatement(INSERT_QUERY))
       {
          stmt.setString(1, web.getDuration());
-         stmt.setInt(2, web.getHeight());
-         stmt.setInt(3, web.getWidth());
+         stmt.setLong(2, web.getHeight());
+         stmt.setLong(3, web.getWidth());
          stmt.setString(4, web.getName());
-         stmt.setInt(5, web.getNsfw());
-         stmt.setInt(6, web.getSize());
+         stmt.setLong(5, web.getNsfw());
+         stmt.setLong(6, web.getSize());
          stmt.setString(7, web.getPath());
          stmt.setString(8, web.getThumbnail());
-         stmt.setInt(9, web.getTn_height());
-         stmt.setInt(10, web.getTn_width());
+         stmt.setLong(9, web.getTn_height());
+         stmt.setLong(10, web.getTn_width());
 
          // executing query
          stmt.executeUpdate();

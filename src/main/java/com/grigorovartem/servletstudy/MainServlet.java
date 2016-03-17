@@ -35,15 +35,15 @@ public class MainServlet extends HttpServlet
    {
       Webm web = new Webm();
       web.setDuration(req.getParameter("duration"));
-      web.setHeight(Integer.parseInt(req.getParameter("height")));
-      web.setWidth(Integer.parseInt(req.getParameter("width")));
+      web.setHeight(Long.parseLong(req.getParameter("height")));
+      web.setWidth(Long.parseLong(req.getParameter("width")));
       web.setName(req.getParameter("name"));
-      web.setNsfw(Integer.parseInt(req.getParameter("nsfw")));
-      web.setSize(Integer.parseInt(req.getParameter("size")));
+      web.setNsfw(Long.parseLong(req.getParameter("nsfw")));
+      web.setSize(Long.parseLong(req.getParameter("size")));
       web.setPath(req.getParameter("path"));
       web.setThumbnail(req.getParameter("thumbnail"));
-      web.setTn_height(Integer.parseInt(req.getParameter("tn_height")));
-      web.setTn_width(Integer.parseInt(req.getParameter("tn_width")));
+      web.setTn_height(Long.parseLong(req.getParameter("tn_height")));
+      web.setTn_width(Long.parseLong(req.getParameter("tn_width")));
       return web;
    }
 }

@@ -34,19 +34,31 @@ public class ParserJson {
                     {
                         JSONObject webmObject = (JSONObject) m;
                         web.setDuration((String)webmObject.get("duration"));
-                        web.setHeight((Integer) webmObject.get("height"));
-                        web.setWidth((Integer) webmObject.get("width"));
+                        web.setHeight((Long) webmObject.get("height"));
+                        web.setWidth((Long) webmObject.get("width"));
                         web.setName((String)webmObject.get("name"));
-                        web.setNsfw((Integer) webmObject.get("nsfw"));
-                        web.setSize((Integer) webmObject.get("size"));
+                        web.setNsfw((Long) webmObject.get("nsfw"));
+                        web.setSize((Long) webmObject.get("size"));
                         web.setPath((String)webmObject.get("path"));
                         web.setThumbnail((String)webmObject.get("thumbnail"));
-                        web.setTn_height((Integer) webmObject.get("tn_height"));
-                        web.setTn_width((Integer) webmObject.get("tn_widt"));
+                        web.setTn_height((Long) webmObject.get("tn_height"));
+                        web.setTn_width((Long) webmObject.get("tn_width"));
+
+                        System.out.println(web.getDuration());
+                        System.out.println(web.getHeight());
+                        System.out.println(web.getWidth());
+                        System.out.println(web.getName());
+                        System.out.println(web.getNsfw());
+                        System.out.println(web.getSize());
+                        System.out.println(web.getPath());
+                        System.out.println(web.getThumbnail());
+                        System.out.println(web.getTn_height());
+                        System.out.println(web.getTn_width());
 
                     }
                 }
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();

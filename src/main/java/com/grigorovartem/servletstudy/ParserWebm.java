@@ -16,7 +16,7 @@ public class ParserWebm implements Runnable
 {
    private static final String URL = "https://2ch.hk/vg/1.json";
    private static final String FILE_DIRECTORY = "D:\\Java\\";
-   private static final int DELAY_SECONDS = 1;
+   private static final int DELAY_SECONDS = 60;
 
    private HttpClient httpClient = HttpClients.createDefault();
    private HttpGet httpGet = new HttpGet(URL);
