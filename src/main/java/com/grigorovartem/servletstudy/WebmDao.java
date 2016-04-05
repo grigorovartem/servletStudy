@@ -25,10 +25,13 @@ public class WebmDao
 
          // executing query
          stmt.executeUpdate();
+         System.out.println(INSERT_QUERY);
       }
       catch (SQLException sqlEx)
       {
          sqlEx.printStackTrace();
       }
    }
+   //System.out.println(INSERT_QUERY);
+
 }

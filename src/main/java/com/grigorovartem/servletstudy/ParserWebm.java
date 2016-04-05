@@ -11,15 +11,23 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class ParserWebm implements Runnable
 {
    private static final String URL = "https://2ch.hk/vg/1.json";
    private static final String FILE_DIRECTORY = "D:\\Java\\";
    private static final int DELAY_SECONDS = 60;
+   private static ArrayList<String> filesList = new ArrayList<>();
 
    private HttpClient httpClient = HttpClients.createDefault();
    private HttpGet httpGet = new HttpGet(URL);
+
+
+   public static ArrayList getList()
+   {
+      return filesList;
+   }
 
    public void saveHtml() throws IOException
    {
@@ -29,15 +37,18 @@ public class ParserWebm implements Runnable
       try (
             BufferedReader reader = new BufferedReader(new InputStreamReader(httpEntity.getContent()));
             FileWriter writer = new FileWriter(new File(generateFileName()))
+
       )
       {
          String line;
+          filesList.add(generateFileName());
          while ((line = reader.readLine()) != null)
          {
             writer.write(line);
          }
          writer.flush();
       }
+
    }
 
    private String generateFileName()
@@ -54,6 +65,7 @@ public class ParserWebm implements Runnable
          {
             System.out.println(System.currentTimeMillis() + ": Trying to save html!");
             saveHtml();
+
             Thread.sleep(DELAY_SECONDS * 1000);
          }
          catch (IOException | InterruptedException e)
