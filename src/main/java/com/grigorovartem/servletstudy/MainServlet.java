@@ -12,41 +12,36 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainServlet extends HttpServlet
-{
-   private static WebmDao dao = new WebmDao();
-   private static WebmValidator webmValidator = new WebmValidator();
-   //ParserJson pj = new ParserJson();
-    //ParserWebm pw = new ParserWebm();
+public class MainServlet extends HttpServlet {
+    private static WebmDao dao = new WebmDao();
+    private static WebmValidator webmValidator = new WebmValidator();
 
-   @Override
-   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-           Webm web = extractWebm(req);
+        Webm web = extractWebm(req);
 
-           //PrintWriter out = resp.getWriter();
-           try {
-               webmValidator.validate(web);
+        try {
+            webmValidator.validate(web);
 
-               dao.save(web);
-           } catch (ValidationException e) {
-               e.printStackTrace();
-           }
-       }
+            dao.save(web);
+        } catch (ValidationException e) {
+            e.printStackTrace();
+        }
+    }
 
-   private Webm extractWebm(HttpServletRequest req)
-   {
-      Webm web = new Webm();
-      web.setDuration(req.getParameter("duration"));
-      web.setHeight(Long.parseLong(req.getParameter("height")));
-      web.setWidth(Long.parseLong(req.getParameter("width")));
-      web.setName(req.getParameter("name"));
-      web.setNsfw(Long.parseLong(req.getParameter("nsfw")));
-      web.setSize(Long.parseLong(req.getParameter("size")));
-      web.setPath(req.getParameter("path"));
-      web.setThumbnail(req.getParameter("thumbnail"));
-      web.setTn_height(Long.parseLong(req.getParameter("tn_height")));
-      web.setTn_width(Long.parseLong(req.getParameter("tn_width")));
-      return web;
-   }
+    private Webm extractWebm(HttpServletRequest req) {
+        Webm web = new Webm();
+        web.setDuration(req.getParameter("duration"));
+        web.setHeight(Long.parseLong(req.getParameter("height")));
+        web.setWidth(Long.parseLong(req.getParameter("width")));
+        web.setName(req.getParameter("name"));
+        web.setNsfw(Long.parseLong(req.getParameter("nsfw")));
+        web.setSize(Long.parseLong(req.getParameter("size")));
+        web.setPath(req.getParameter("path"));
+        web.setThumbnail(req.getParameter("thumbnail"));
+        web.setTn_height(Long.parseLong(req.getParameter("tn_height")));
+        web.setTn_width(Long.parseLong(req.getParameter("tn_width")));
+        return web;
+    }
 }
