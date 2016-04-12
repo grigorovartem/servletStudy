@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainServlet extends HttpServlet
 {
    private static WebmDao dao = new WebmDao();
    private static WebmValidator webmValidator = new WebmValidator();
-   ParserJson pj = new ParserJson();
-    ArrayList<String> files = ParserWebm.getList();
+   //ParserJson pj = new ParserJson();
+    //ParserWebm pw = new ParserWebm();
 
    @Override
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-       ArrayList<String> files = ParserWebm.getList();
-       for (String fileName : files) {
-           Webm web = pj.saveWebm(fileName);//extractWebm(req);
+           Webm web = extractWebm(req);
 
-           PrintWriter out = resp.getWriter();
+           //PrintWriter out = resp.getWriter();
            try {
                webmValidator.validate(web);
 
@@ -34,9 +33,8 @@ public class MainServlet extends HttpServlet
                e.printStackTrace();
            }
        }
-   }
 
-   /*private Webm extractWebm(HttpServletRequest req)
+   private Webm extractWebm(HttpServletRequest req)
    {
       Webm web = new Webm();
       web.setDuration(req.getParameter("duration"));
@@ -50,5 +48,5 @@ public class MainServlet extends HttpServlet
       web.setTn_height(Long.parseLong(req.getParameter("tn_height")));
       web.setTn_width(Long.parseLong(req.getParameter("tn_width")));
       return web;
-   }*/
+   }
 }

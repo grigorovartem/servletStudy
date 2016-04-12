@@ -23,15 +23,12 @@ public class WebmDao
          stmt.setLong(9, web.getTn_height());
          stmt.setLong(10, web.getTn_width());
 
-         // executing query
          stmt.executeUpdate();
-         System.out.println(INSERT_QUERY);
+
       }
       catch (SQLException sqlEx)
       {
          sqlEx.printStackTrace();
       }
    }
-   //System.out.println(INSERT_QUERY);
-
 }

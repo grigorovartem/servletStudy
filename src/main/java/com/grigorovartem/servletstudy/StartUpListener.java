@@ -17,7 +17,6 @@ public class StartUpListener implements ServletContextListener
       }
    }
 
-   //Run this before web application is started
    @Override
    public void contextInitialized(ServletContextEvent arg0)
    {

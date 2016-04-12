@@ -1,24 +1,27 @@
 package com.grigorovartem.servletstudy;
 
+import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ParserJson {
-    //private static final String FILENAME = "D:\\Java\\1458242112093.txt";
+    private static final String DIRECTORY = "D:\\Java\\";
+    private static final String URL = "https://2ch.hk/vg/";
 
-    //@SuppressWarnings("unchecked")
-    public /*static void main(String[] args)*/ Webm saveWebm(String fileName) {
+    public List<Webm> saveWebm(InputStream stream) {
 
         JSONParser parser = new JSONParser();
-        Webm web = new Webm();
+        List<Webm> webms = new ArrayList<>();
 
         try {
 
-                Object obj = parser.parse(new FileReader(fileName));
+                Object obj = parser.parse(new BufferedReader(new InputStreamReader(stream)));
 
                 JSONObject jsonObject = (JSONObject) obj;
 
@@ -31,6 +34,7 @@ public class ParserJson {
                         JSONArray filesArray = (JSONArray) postsObject.get("files");
                         for (Object m : filesArray) {
                             JSONObject webmObject = (JSONObject) m;
+                            Webm web = new Webm();
                             web.setDuration((String) webmObject.get("duration"));
                             web.setHeight((Long) webmObject.get("height"));
                             web.setWidth((Long) webmObject.get("width"));
@@ -42,27 +46,29 @@ public class ParserJson {
                             web.setTn_height((Long) webmObject.get("tn_height"));
                             web.setTn_width((Long) webmObject.get("tn_width"));
 
-                            System.out.println(web.getDuration());
-                            System.out.println(web.getHeight());
-                            System.out.println(web.getWidth());
-                            System.out.println(web.getName());
-                            System.out.println(web.getNsfw());
-                            System.out.println(web.getSize());
-                            System.out.println(web.getPath());
-                            System.out.println(web.getThumbnail());
-                            System.out.println(web.getTn_height());
-                            System.out.println(web.getTn_width());
+                            if(web.getName().endsWith(".webm")) {
+                                webms.add(web);
+                            }
+                            try {
+                                for (Webm file:webms) {
 
+                                File destination = new File(DIRECTORY + file.getName());
+                                if (!destination.exists()) {
+                                    FileUtils.copyURLToFile(new URL(URL + file.getPath()), destination);
+                                    }
+                                }
+                            }
+                            catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
 
-
-
             }catch(Exception e){
                 e.printStackTrace();
             }
-            return web;
+            return webms;
 
     }
 }
