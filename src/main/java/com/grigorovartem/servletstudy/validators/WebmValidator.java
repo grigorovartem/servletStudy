@@ -1,6 +1,6 @@
 package com.grigorovartem.servletstudy.validators;
 
-import com.grigorovartem.servletstudy.Webm;
+import com.grigorovartem.servletstudy.model.Webm;
 
 public class WebmValidator implements Validator<Webm>
 {

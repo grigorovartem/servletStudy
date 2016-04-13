@@ -1,19 +1,21 @@
-package com.grigorovartem.servletstudy;
+package com.grigorovartem.servletstudy.app;
+
+import com.grigorovartem.servletstudy.export.dvach.Exporter;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 public class StartUpListener implements ServletContextListener
 {
-   private Thread parsingThread;
+   private Thread DvachExporterThread;
 
    @Override
    public void contextDestroyed(ServletContextEvent arg0)
    {
       System.out.println("ServletContextListener destroyed");
-      if (parsingThread != null)
+      if (DvachExporterThread != null)
       {
-         parsingThread.interrupt();
+         DvachExporterThread.interrupt();
       }
    }
 
@@ -21,7 +23,7 @@ public class StartUpListener implements ServletContextListener
    public void contextInitialized(ServletContextEvent arg0)
    {
       System.out.println("StartUpListener started.");
-      parsingThread = new Thread(new ParserWebm());
-      parsingThread.start();
+      DvachExporterThread = new Thread(new Exporter());
+      DvachExporterThread.start();
    }
 }

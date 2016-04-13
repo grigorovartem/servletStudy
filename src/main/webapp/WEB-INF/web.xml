@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>mainServlet</servlet-name>
-        <servlet-class>com.grigorovartem.servletstudy.MainServlet</servlet-class>
+        <servlet-class>com.grigorovartem.servletstudy.app.MainServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -16,7 +16,7 @@
 
     <listener>
         <listener-class>
-            com.grigorovartem.servletstudy.StartUpListener
+            com.grigorovartem.servletstudy.app.StartUpListener
         </listener-class>
     </listener>
 

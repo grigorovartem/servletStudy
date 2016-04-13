@@ -1,4 +1,4 @@
-package com.grigorovartem.servletstudy;
+package com.grigorovartem.servletstudy.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ public class DBUtil
 
    }
 
-   public static java.sql.Connection getInstance()
+   public static Connection getInstance()
    {
       if (con == null)
       {
@@ -26,7 +26,6 @@ public class DBUtil
             String JDBC_DRIVER = "com.mysql.jdbc.Driver";
             Class.forName(JDBC_DRIVER);
             con = DriverManager.getConnection(url, user, password);
-
          }
          catch (SQLException | ClassNotFoundException e)
          {

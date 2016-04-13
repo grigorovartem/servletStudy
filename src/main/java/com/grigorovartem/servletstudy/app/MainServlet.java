@@ -1,5 +1,7 @@
-package com.grigorovartem.servletstudy;
+package com.grigorovartem.servletstudy.app;
 
+import com.grigorovartem.servletstudy.model.Webm;
+import com.grigorovartem.servletstudy.dao.WebmDao;
 import com.grigorovartem.servletstudy.validators.ValidationException;
 import com.grigorovartem.servletstudy.validators.WebmValidator;
 
@@ -8,12 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainServlet extends HttpServlet {
-    private static WebmDao dao = new WebmDao();
+
     private static WebmValidator webmValidator = new WebmValidator();
 
     @Override
@@ -23,8 +22,7 @@ public class MainServlet extends HttpServlet {
 
         try {
             webmValidator.validate(web);
-
-            dao.save(web);
+            WebmDao.save(web);
         } catch (ValidationException e) {
             e.printStackTrace();
         }
@@ -40,8 +38,8 @@ public class MainServlet extends HttpServlet {
         web.setSize(Long.parseLong(req.getParameter("size")));
         web.setPath(req.getParameter("path"));
         web.setThumbnail(req.getParameter("thumbnail"));
-        web.setTn_height(Long.parseLong(req.getParameter("tn_height")));
-        web.setTn_width(Long.parseLong(req.getParameter("tn_width")));
+        web.setTnHeight(Long.parseLong(req.getParameter("tn_height")));
+        web.setTnWidth(Long.parseLong(req.getParameter("tn_width")));
         return web;
     }
 }

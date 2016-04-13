@@ -1,4 +1,4 @@
-package com.grigorovartem.servletstudy;
+package com.grigorovartem.servletstudy.model;
 
 public class Webm
 {
@@ -10,8 +10,8 @@ public class Webm
    private Long size;
    private String path;
    private String thumbnail;
-   private Long tn_height;
-   private Long tn_width;
+   private Long tnHeight;
+   private Long tnWidth;
 
    public String getDuration()
    {
@@ -93,23 +93,23 @@ public class Webm
       this.thumbnail = thumbnail;
    }
 
-   public Long getTn_height()
+   public Long getTnHeight()
    {
-      return tn_height;
+      return tnHeight;
    }
 
-   public void setTn_height(Long tn_height)
+   public void setTnHeight(Long tnHeight)
    {
-      this.tn_height = tn_height;
+      this.tnHeight = tnHeight;
    }
 
-   public Long getTn_width()
+   public Long getTnWidth()
    {
-      return tn_width;
+      return tnWidth;
    }
 
-   public void setTn_width(Long tn_width)
+   public void setTnWidth(Long tnWidth)
    {
-      this.tn_width = tn_width;
+      this.tnWidth = tnWidth;
    }
 }
