@@ -5,10 +5,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParserJson {
+
+    private static final String selectTableSQL = "SELECT name from video.webm";
 
     public List<Webm> saveWebm(InputStream stream) {
 
@@ -42,8 +48,22 @@ public class ParserJson {
                         web.setTn_height((Long) webmObject.get("tn_height"));
                         web.setTn_width((Long) webmObject.get("tn_width"));
 
-                        if (web.getName().endsWith(".webm")) {
-                            webms.add(web);
+                        try {
+                            Connection con = DBUtil.getInstance();
+                            Statement statement = con.createStatement();
+                            ResultSet rs = statement.executeQuery(selectTableSQL);
+                            List<String> names = new ArrayList<>();
+
+                            while (rs.next()) {
+                                names.add(rs.getString("name"));
+                            }
+                            if (web.getName().endsWith(".webm") && !names.contains(web.getName())) {
+                                webms.add(web);
+                            }
+
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+
                         }
                     }
                 }
