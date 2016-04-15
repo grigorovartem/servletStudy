@@ -29,6 +29,7 @@ public class Downloader
             File destination = new File(Constants.PATH_TO_SAVE + web.getName());
             try
             {
+
                FileUtils.copyURLToFile(new URL(Constants.DOWLOAD_2CH_WEBM_PREFIX + web.getPath()), destination);
             }
             catch (IOException e)
@@ -41,5 +42,6 @@ public class Downloader
             }
          }
       });
+
    }
 }
