@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.grigorovartem.servletstudy.model.Webm;
+import org.springframework.stereotype.Component;
 
+@Component
 public class WebmDao
 {
    private static String DURATION = "duration";
@@ -23,7 +25,7 @@ public class WebmDao
          "INSERT INTO video.webm(duration, height, width, name, nsfw, size, path, thumbnail, tn_height, tn_width) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
    private static String RETRIEVE_BY_NAME_QUERY = "SELECT * FROM webm WHERE name=?;";
 
-   public static void save(Webm web)
+   public void save(Webm web)
    {
       try (PreparedStatement stmt = DBUtil.getInstance()
             .prepareStatement(INSERT_QUERY))
@@ -47,7 +49,7 @@ public class WebmDao
       }
    }
 
-   public static Webm getByName(String name)
+   public Webm getByName(String name)
    {
       try (PreparedStatement stmt = DBUtil.getInstance()
             .prepareStatement(RETRIEVE_BY_NAME_QUERY))
@@ -62,7 +64,7 @@ public class WebmDao
       return null;
    }
 
-   public static Webm convertToWebm(ResultSet rs) throws SQLException
+   public Webm convertToWebm(ResultSet rs) throws SQLException
    {
       if (!rs.next())
       {
